@@ -4,6 +4,8 @@
 
 ### Breaking Changes
 
+-   Item popup `sm`, `md`, and `lg` width presets now set a maximum width and size to content. To keep a fixed width, set it through `className` or `style`. Form popups retain their anchor-width minimum.
+
 -   `Link`: Styled links with a new-tab indicator now wrap their content in a span. Update flex/grid compositions and direct-child selectors that rely on the content being a direct child of the anchor, and review anchor-level underline overrides ([#84806](https://github.com/WordPress/gutenberg/pull/84806)).
 -   `SelectControl`: Remove the `triggerContent` prop. Pass custom content as children of a `SelectControl.Trigger` element through the `trigger` prop instead ([#84828](https://github.com/WordPress/gutenberg/pull/84828)).
 -   `Select`, `Autocomplete`, `Combobox`, and the select controls: `actionsRef` no longer keeps closed popups mounted. For externally controlled exit animations, call `eventDetails.preventUnmountOnClose()` in `onOpenChange` when closing, then `actionsRef.current?.unmount()` when the animation ends. Close through `actionsRef.current?.close()` to run that handler. Automatic CSS exit animations need no migration. See [Base UI's migration guide](https://github.com/mui/base-ui/pull/5734) ([#84542](https://github.com/WordPress/gutenberg/pull/84542)).
@@ -12,6 +14,8 @@
 -   Raise the minimum required Node.js version to `>=22.13.0`, for stable `require(esm)` support ([#84313](https://github.com/WordPress/gutenberg/pull/84313)).
 
 ### New Features
+
+-   `Menu.Popup`: Add width presets, with `sm` as the default to preserve the 320px maximum width.
 
 -   `Avatar`: Add `Avatar.Initials` using the first and last words with complete Unicode characters, and a borderless person icon as the default fallback ([#84653](https://github.com/WordPress/gutenberg/pull/84653)).
 -   Add `Avatar.Root`, `Avatar.Image`, and `Avatar.Fallback` for profile images with customizable fallbacks, circle and square shapes, a neutral border, five sizes from 16px to 64px, and a reduced-motion-aware image fade. ([#84145](https://github.com/WordPress/gutenberg/pull/84145))
