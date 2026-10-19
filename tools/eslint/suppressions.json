@@ -8929,11 +8929,6 @@
 			"count": 1
 		}
 	},
-	"packages/core-data/src/entities.js": {
-		"gutenberg/use-typescript": {
-			"count": 1
-		}
-	},
 	"packages/core-data/src/footnotes/get-footnotes-order.js": {
 		"gutenberg/use-typescript": {
 			"count": 1
@@ -8984,11 +8979,6 @@
 			"count": 1
 		}
 	},
-	"packages/core-data/src/reducer.js": {
-		"gutenberg/use-typescript": {
-			"count": 1
-		}
-	},
 	"packages/core-data/src/resolvers.js": {
 		"gutenberg/use-typescript": {
 			"count": 1
@@ -9005,11 +8995,6 @@
 		}
 	},
 	"packages/core-data/src/test/deprecated-entity-logging.jsdom.test.js": {
-		"gutenberg/use-typescript": {
-			"count": 1
-		}
-	},
-	"packages/core-data/src/test/entities.jsdom.test.js": {
 		"gutenberg/use-typescript": {
 			"count": 1
 		}
@@ -9033,11 +9018,6 @@
 		}
 	},
 	"packages/core-data/src/test/private-selectors.jsdom.test.js": {
-		"gutenberg/use-typescript": {
-			"count": 1
-		}
-	},
-	"packages/core-data/src/test/reducer.jsdom.test.js": {
 		"gutenberg/use-typescript": {
 			"count": 1
 		}
