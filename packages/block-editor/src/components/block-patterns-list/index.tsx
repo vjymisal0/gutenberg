@@ -1,4 +1,4 @@
-import type { ForwardedRef } from 'react';
+import type { ForwardedRef, ReactElement, RefAttributes } from 'react';
 import type { Block } from '@wordpress/blocks';
 import clsx from 'clsx';
 import { cloneBlock } from '@wordpress/blocks';
@@ -15,7 +15,6 @@ import BlockPreview from '../block-preview';
 import InserterDraggableBlocks from '../inserter-draggable-blocks';
 import BlockPatternsPaging from '../block-patterns-paging';
 import { INSERTER_PATTERN_TYPES } from '../inserter/block-patterns-tab/utils';
-import type { BlockPattern } from '../../store/types';
 import type {
 	BlockPatternProps,
 	BlockPatternsListPattern,
@@ -35,7 +34,7 @@ const WithToolTip = ( { showTooltip, title, children }: WithToolTipProps ) => {
 	return <>{ children }</>;
 };
 
-function BlockPattern( {
+function BlockPattern< P extends BlockPatternsListPattern >( {
 	id,
 	isDraggable,
 	pattern,
@@ -44,10 +43,9 @@ function BlockPattern( {
 	showTitlesAsTooltip,
 	category,
 	isSelected,
-}: BlockPatternProps ) {
+}: BlockPatternProps< P > ) {
 	const [ isDragging, setIsDragging ] = useState( false );
-	// Listed patterns come with their parsed blocks.
-	const { blocks, viewportWidth } = pattern as BlockPatternsListPattern;
+	const { blocks, viewportWidth } = pattern;
 	const instanceId = useInstanceId( BlockPattern );
 	const descriptionId = `block-editor-block-patterns-list__item-description-${ instanceId }`;
 	const isUserPattern = pattern.type === INSERTER_PATTERN_TYPES.user;
@@ -185,7 +183,7 @@ function BlockPatternPlaceholder() {
 	);
 }
 
-function BlockPatternsList(
+function BlockPatternsList< P extends BlockPatternsListPattern >(
 	{
 		isDraggable,
 		blockPatterns,
@@ -196,7 +194,7 @@ function BlockPatternsList(
 		label = __( 'Patterns' ),
 		showTitlesAsTooltip,
 		pagingProps,
-	}: BlockPatternsListProps,
+	}: BlockPatternsListProps< P >,
 	ref: ForwardedRef< HTMLDivElement >
 ) {
 	const [ activeCompositeId, setActiveCompositeId ] = useState<
@@ -214,7 +212,7 @@ function BlockPatternsList(
 		setActiveCompositeId( firstCompositeItemId );
 	}, [ blockPatterns ] );
 
-	const handleClickPattern = ( pattern: BlockPattern, blocks: Block[] ) => {
+	const handleClickPattern = ( pattern: P, blocks: Block[] ) => {
 		setActivePattern( pattern.name );
 		onClickPattern( pattern, blocks );
 	};
@@ -249,4 +247,9 @@ function BlockPatternsList(
 	);
 }
 
-export default forwardRef( BlockPatternsList );
+// `forwardRef` drops the generic, so restore it for the callbacks.
+export default forwardRef( BlockPatternsList ) as <
+	P extends BlockPatternsListPattern,
+>(
+	props: BlockPatternsListProps< P > & RefAttributes< HTMLDivElement >
+) => ReactElement;

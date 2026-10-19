@@ -4,16 +4,27 @@ import type { BlockPattern } from '../../store/types';
 import type { PaginationProps } from '../block-patterns-paging/types';
 
 /**
- * A listed pattern, which comes with its parsed blocks.
+ * A pattern in the list, with its parsed blocks.
  */
-export type BlockPatternsListPattern = BlockPattern & {
+export interface BlockPatternsListPattern extends Pick<
+	BlockPattern,
+	'title' | 'description' | 'type' | 'syncStatus' | 'id'
+> {
+	name: string;
 	blocks: Block[];
 	viewportWidth?: number;
-};
+}
 
-export type OnClickPattern = ( pattern: BlockPattern, blocks: Block[] ) => void;
+/**
+ * The callbacks receive the pattern objects the list was given.
+ */
+export type OnClickPattern<
+	P extends BlockPatternsListPattern = BlockPatternsListPattern,
+> = ( pattern: P, blocks: Block[] ) => void;
 
-export type OnHoverPattern = ( pattern: BlockPattern | null ) => void;
+export type OnHoverPattern<
+	P extends BlockPatternsListPattern = BlockPatternsListPattern,
+> = ( pattern: P | null ) => void;
 
 export interface WithToolTipProps {
 	showTooltip?: boolean;
@@ -21,22 +32,26 @@ export interface WithToolTipProps {
 	children: ReactElement< Record< string, unknown > >;
 }
 
-export interface BlockPatternProps {
+export interface BlockPatternProps<
+	P extends BlockPatternsListPattern = BlockPatternsListPattern,
+> {
 	id: string;
 	isDraggable?: boolean;
-	pattern: BlockPattern;
-	onClick: OnClickPattern;
-	onHover?: OnHoverPattern;
+	pattern: P;
+	onClick: OnClickPattern< P >;
+	onHover?: OnHoverPattern< P >;
 	showTitlesAsTooltip?: boolean;
 	category?: string;
 	isSelected?: boolean;
 }
 
-export interface BlockPatternsListProps {
+export interface BlockPatternsListProps<
+	P extends BlockPatternsListPattern = BlockPatternsListPattern,
+> {
 	isDraggable?: boolean;
-	blockPatterns: BlockPattern[];
-	onHover?: OnHoverPattern;
-	onClickPattern: OnClickPattern;
+	blockPatterns: Array< P >;
+	onHover?: OnHoverPattern< P >;
+	onClickPattern: OnClickPattern< P >;
 	orientation?: 'horizontal' | 'vertical' | 'both';
 	category?: string;
 	label?: string;
