@@ -366,7 +366,7 @@ export type Action =
 			type: 'CLEAR_SYNC_CONNECTION_STATUS';
 			kind: string;
 			name: string;
-			key: ItemId;
+			key: ItemId | null;
 	  }
 	| ( EntityActionTarget & {
 			type: 'DELETE_ENTITY_RECORD_FINISH' | 'DELETE_ENTITY_RECORD_START';
@@ -410,7 +410,7 @@ export type Action =
 	| {
 			type: 'RECEIVE_REGISTERED_POST_META';
 			postType: string;
-			registeredPostMeta: Record< string, unknown >;
+			registeredPostMeta: Record< string, unknown > | undefined;
 	  }
 	| {
 			type: 'RECEIVE_THEME_GLOBAL_STYLE_REVISIONS';
@@ -461,7 +461,7 @@ export type Action =
 			type: 'SET_SYNC_CONNECTION_STATUS';
 			kind: string;
 			name: string;
-			key: ItemId;
+			key: ItemId | null;
 			status: ConnectionStatus;
 	  };
 
