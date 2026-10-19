@@ -8979,11 +8979,6 @@
 			"count": 1
 		}
 	},
-	"packages/core-data/src/resolvers.js": {
-		"gutenberg/use-typescript": {
-			"count": 1
-		}
-	},
 	"packages/core-data/src/test/actions.jsdom.test.js": {
 		"gutenberg/use-typescript": {
 			"count": 1
@@ -9018,11 +9013,6 @@
 		}
 	},
 	"packages/core-data/src/test/private-selectors.jsdom.test.js": {
-		"gutenberg/use-typescript": {
-			"count": 1
-		}
-	},
-	"packages/core-data/src/test/resolvers.jsdom.test.js": {
 		"gutenberg/use-typescript": {
 			"count": 1
 		}
