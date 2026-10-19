@@ -151,7 +151,7 @@ jobs:
                   # Dev tooling configs at the package root. Configs a package
                   # ships, such as `packages/scripts/config/`, and TypeScript
                   # configs that can affect the build (`tsconfig.json`,
-                  # `tsconfig.build.json`, `tsconfig.plugins.json`) still count.
+                  # `tsconfig.build.json`, `tsconfig.prebuilt.json`) still count.
                   ignored+="|(tsconfig\.(stories|test|bin)\.json|\.(stylelintrc|eslintrc|prettierrc)[^/]*|\.gitignore)$"
                   ignored+=")"
 
