@@ -12,6 +12,7 @@
 
 ### Internal
 
+-   Convert the queried data to TypeScript ([#85061](https://github.com/WordPress/gutenberg/pull/85061)).
 -   Convert the store locks to TypeScript ([#85059](https://github.com/WordPress/gutenberg/pull/85059)).
 -   Convert the `utils` modules, the store name and the entity context to TypeScript ([#85058](https://github.com/WordPress/gutenberg/pull/85058)).
 -   Add the private `getFieldsConfig( kind, name )` selector, which returns the fields an entity registered on the server, as the `/wp/v2/entity-fields` REST API route returns them ([#84700](https://github.com/WordPress/gutenberg/pull/84700)).
