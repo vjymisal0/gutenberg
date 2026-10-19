@@ -431,7 +431,9 @@ export const getEntityRecords =
 				} while ( page <= totalPages );
 			} else {
 				records = Object.values(
-					await apiFetch< Record< string, RestRecord > >( { path } )
+					await apiFetch<
+						Array< RestRecord > | Record< string, RestRecord >
+					>( { path } )
 				);
 				meta = {
 					totalItems: records.length,
@@ -621,7 +623,7 @@ export const getEmbedPreview =
  * @param id       ID of the rest resource to check.
  */
 export const canUser =
-	( resource: string | PermissionResource, id?: string | number ) =>
+	( resource: string | PermissionResource, id?: string | number | null ) =>
 	async ( { dispatch, resolveSelect }: CoreDataThunkArgs ) => {
 		let resourcePath: string | null = null;
 		if ( typeof resource === 'object' ) {
@@ -689,7 +691,7 @@ export const canUser =
 canUser.getResolutionArgs = (
 	action: string,
 	resource: string | PermissionResource,
-	id?: string | number
+	id?: string | number | null
 ) => [ resource, id ];
 
 /**
@@ -1063,9 +1065,7 @@ export const getRevisions =
 					).totalItems;
 				} else {
 					// Fetched parsed, as the revisions themselves.
-					records = Object.values(
-						response as Record< string, RestRecord >
-					);
+					records = Object.values( response as Array< RestRecord > );
 				}
 
 				// If we request fields but the result doesn't contain the fields,
@@ -1330,7 +1330,7 @@ export const getViewConfig =
 	(
 		kind: string,
 		name: string,
-		options: { fields?: Array< string > } = {}
+		options: { fields?: Array< string > | null } = {}
 	) =>
 	async ( { dispatch }: CoreDataThunkArgs ) => {
 		const query: Query = { kind, name };
